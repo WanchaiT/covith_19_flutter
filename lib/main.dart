@@ -1,3 +1,5 @@
+import 'package:covith_19/module/stat_covid.dart';
+import 'package:covith_19/service/api.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -49,6 +51,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  dynamic r = '';
 
   void _incrementCounter() {
     setState(() {
@@ -63,6 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Future<StatCovid?> statCovid = getStatCovid19Th();
+    statCovid.then((value) => setState(() {
+          var l = value!.data.length;
+          r = value!.data[l - 1].newConfirmed;
+        }));
+    // .catchError((error) => handleError(error));
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -95,13 +104,11 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            Text('${r}'),
+            // Text(
+            //   '$_counter',
+            //   style: Theme.of(context).textTheme.headline4,
+            // ),
           ],
         ),
       ),
