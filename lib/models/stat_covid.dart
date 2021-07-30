@@ -34,19 +34,19 @@ class StatCovid {
 }
 
 class StatCovidDate {
-  StatCovidDate({
-    required this.date,
-    required this.newConfirmed,
-    required this.newRecovered,
-    required this.newHospitalized,
-    required this.newDeaths,
-    required this.confirmed,
-    required this.recovered,
-    required this.hospitalized,
-    required this.deaths,
-  });
+  StatCovidDate(
+      {required this.date,
+      required this.newConfirmed,
+      required this.newRecovered,
+      required this.newHospitalized,
+      required this.newDeaths,
+      required this.confirmed,
+      required this.recovered,
+      required this.hospitalized,
+      required this.deaths,
+      this.updateDate});
 
-  String date;
+  String? date;
   int newConfirmed;
   int newRecovered;
   int newHospitalized;
@@ -55,18 +55,19 @@ class StatCovidDate {
   int recovered;
   int hospitalized;
   int deaths;
+  String? updateDate;
 
   factory StatCovidDate.fromJson(Map<String, dynamic> json) => StatCovidDate(
-        date: json["Date"],
-        newConfirmed: json["NewConfirmed"],
-        newRecovered: json["NewRecovered"],
-        newHospitalized: json["NewHospitalized"],
-        newDeaths: json["NewDeaths"],
-        confirmed: json["Confirmed"],
-        recovered: json["Recovered"],
-        hospitalized: json["Hospitalized"],
-        deaths: json["Deaths"],
-      );
+      date: json["Date"],
+      newConfirmed: json["NewConfirmed"],
+      newRecovered: json["NewRecovered"],
+      newHospitalized: json["NewHospitalized"],
+      newDeaths: json["NewDeaths"],
+      confirmed: json["Confirmed"],
+      recovered: json["Recovered"],
+      hospitalized: json["Hospitalized"],
+      deaths: json["Deaths"],
+      updateDate: json["UpdateDate"]);
 
   Map<String, dynamic> toJson() => {
         "Date": date,
@@ -78,5 +79,6 @@ class StatCovidDate {
         "Recovered": recovered,
         "Hospitalized": hospitalized,
         "Deaths": deaths,
+        "UpdateDate": updateDate
       };
 }

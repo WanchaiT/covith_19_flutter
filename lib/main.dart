@@ -1,4 +1,5 @@
-import 'package:covith_19/module/stat_covid.dart';
+import 'package:covith_19/models/stat_covid.dart';
+import 'package:covith_19/module/home.dart';
 import 'package:covith_19/service/api.dart';
 import 'package:flutter/material.dart';
 
@@ -13,21 +14,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          // This is the theme of your application.
+          //
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
+          primarySwatch: Colors.blue,
+        ),
+        home: Home());
   }
 }
 
@@ -66,10 +67,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Future<StatCovid?> statCovid = getStatCovid19Th();
+    Future<StatCovid?> statCovid = getStatTimeline();
     statCovid.then((value) => setState(() {
           var l = value!.data.length;
-          r = value!.data[l - 1].newConfirmed;
+          r = value.data[l - 1].newConfirmed;
         }));
     // .catchError((error) => handleError(error));
     // This method is rerun every time setState is called, for instance as done
